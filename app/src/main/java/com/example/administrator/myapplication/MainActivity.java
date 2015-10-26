@@ -1,6 +1,7 @@
 package com.example.administrator.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,19 +19,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView output = (TextView) findViewById(R.id.output);
-        final EditText input = (EditText) findViewById(R.id.input);
+        final EditText inputBgt = (EditText) findViewById(R.id.inputBgt);
         final Button enterB = (Button) findViewById(R.id.enter_button);
 
         final SharedPreferences sp = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor  = sp.edit();
 
         enterB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String strInput = input.getText().toString();
-                int intInput = Integer.parseInt(strInput);
-                int stored = sp.getInt("");
-
+                String strBudget = inputBgt.getText().toString();
+                int intBudget = Integer.parseInt(strBudget);
+                editor.putInt("Budget", intBudget);
+                editor.putBoolean("budget_isSet", true);
+                editor.commit();
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

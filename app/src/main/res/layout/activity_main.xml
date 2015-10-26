@@ -9,20 +9,16 @@
         android:layout_height="wrap_content" android:textSize="30sp"
         android:textColor="@color/my_color"/>
 
-    <TextView android:text="Highest input: "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:id="@+id/output"/>
-
 
     <EditText
-        android:hint="Enter number:"
+        android:hint="Enter Budget:"
         android:textSize="25sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/input"
+        android:id="@+id/inputBgt"
         />
+
+
 
     <Button
         android:text="Enter"
