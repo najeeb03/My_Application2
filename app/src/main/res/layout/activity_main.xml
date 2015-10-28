@@ -12,10 +12,18 @@
 
     <EditText
         android:hint="Enter Budget:"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/inputBgt"
+        />
+
+    <EditText
+        android:hint="Enter for food:"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bgtCat1"
         />
 
 

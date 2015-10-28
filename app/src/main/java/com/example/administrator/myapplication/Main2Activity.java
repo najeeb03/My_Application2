@@ -6,14 +6,12 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -31,8 +29,6 @@ public class Main2Activity extends AppCompatActivity {
         final EditText inputExp = (EditText) findViewById(R.id.inputExp);
         final Button enterB = (Button) findViewById(R.id.enter_button);
         final Button setBudget = (Button) findViewById(R.id.set_button);
-        final TextView warning = (TextView) findViewById(R.id.warning);
-        warning.setVisibility(View.GONE);
 
         output.setText(balanceStr);
 
@@ -47,18 +43,11 @@ public class Main2Activity extends AppCompatActivity {
                 try {
                     expenseInt = Integer.parseInt(expense);
                     int bal = sp.getInt("Budget", 0);
-                    if (bal == 0) {
-                        Context context = getApplicationContext();
-                        CharSequence text = "You have depleted your Budget!";
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.setGravity(Gravity.CENTER,0,0);
-                        toast.show();
-                        warning.setText("You have depleted your Budget");
-                        warning.setTextColor(getResources().getColor(R.color.red));
-                        warning.setVisibility(View.VISIBLE);
-                    } else {
+                    if(bal == 0) {
+                        output.setText("You have depleted your Budget");
+                        output.setTextColor(getResources().getColor(R.color.red));
+                    }
+                    else{
                         bal = bal - expenseInt;
                         editor.putInt("Budget", bal);
                         editor.commit();
