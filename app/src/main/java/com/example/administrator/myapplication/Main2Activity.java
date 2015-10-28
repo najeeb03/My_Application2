@@ -43,9 +43,16 @@ public class Main2Activity extends AppCompatActivity {
                 try {
                     expenseInt = Integer.parseInt(expense);
                     int bal = sp.getInt("Budget", 0);
-                    editor.putInt("Budget", bal - expenseInt);
-                    editor.commit();
-                    output.setText(Integer.toString(bal));
+                    if(bal == 0) {
+                        output.setText("You have depleted your Budget");
+                        output.setTextColor(getResources().getColor(R.color.red));
+                    }
+                    else{
+                        bal = bal - expenseInt;
+                        editor.putInt("Budget", bal);
+                        editor.commit();
+                        output.setText(Integer.toString(bal));
+                    }
                 } catch (Exception e) {
                     inputExp.setHint("Please enter an integer");
                 }
